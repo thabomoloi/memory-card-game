@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import loadingImage from "./assets/images/luffy-gear-5.gif";
+import "./App.css";
+import Game from "./components/Game/Game";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  useEffect(() => {
+    const loadingInterval = setInterval(() => setIsLoading(false), 5000);
+
+    return () => clearInterval(loadingInterval);
+  }, []);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {isLoading && (
+        <div id="loading-game">
+          <img src={loadingImage} alt="Loading..." />
+        </div>
+      )}
+      {!isLoading && <Game />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
