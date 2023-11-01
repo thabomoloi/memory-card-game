@@ -17,6 +17,9 @@ function Card({ character, isFlipped, flipCards }: CardProps) {
 
   if (cardInnerRef.current) {
     cardInnerRef.current.style.transform = isFlipped ? "rotateY(180deg)" : "";
+    cardInnerRef.current.style.boxShadow = isFlipped
+      ? "-3px 3px 2px 2px rgba(20, 20, 20, 0.75)"
+      : "";
   }
 
   return (
