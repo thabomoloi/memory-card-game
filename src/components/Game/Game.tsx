@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { characters } from "../../characters";
 import Card from "../Card/Card";
+import "./Game.css";
+
 function Game() {
   const [cardsFlipped, setCardsFlipped] = useState<boolean>(false);
   const flipCards = () => {
