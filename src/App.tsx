@@ -4,8 +4,10 @@ import backgroundSound from "./assets/sounds/overtaken_one_piece.mp3";
 
 import "./App.css";
 import Game from "./components/Game/Game";
+import Menu from "./components/Menu/Menu";
 
 enum GameState {
+  Loading,
   Menu,
   Playing,
   GameOver,
@@ -16,13 +18,13 @@ function App() {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [soundMuted, setSoundMuted] = useState<boolean>(false);
-  const [gameState, setGameState] = useState<GameState>(GameState.Menu);
+  const [gameState, setGameState] = useState<GameState>(GameState.Loading);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 5000);
+    setTimeout(() => setGameState(GameState.Menu), 5000);
   }, [isLoading, soundMuted]);
 
-  const startGame = () => {
+  const handleStartGame = () => {
     setGameState(GameState.Playing);
     backgroundAudio.currentTime = 0;
     backgroundAudio.loop = true;
@@ -30,12 +32,15 @@ function App() {
   };
   return (
     <>
-      {isLoading && (
+      {gameState == GameState.Loading && (
         <div id="loading-game">
           <img src={loadingImage} alt="Loading..." />
         </div>
       )}
-      {!isLoading && <Game soundMuted={soundMuted} />}
+      {gameState == GameState.Menu && (
+        <Menu handleStartGame={handleStartGame} />
+      )}
+      {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
     </>
   );
 }
