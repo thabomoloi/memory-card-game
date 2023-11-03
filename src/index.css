@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "OnePiece";
+  src: url("./assets/fonts/onpiecefont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -31,7 +38,7 @@ a:hover {
 body {
   margin: 0;
   min-height: 100svh;
-  background-image: url("assets/images/onepiecebg.gif");
+  background-image: url("assets/images/crew.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
