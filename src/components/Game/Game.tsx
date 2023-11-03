@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { characters } from "../../characters";
 import Card from "../Card/Card";
-import flipSound from "../../assets/sounds/conqueror_haki_luffy.mp3";
-
+import { flipAudio } from "../../utils/audio";
 import "./Game.css";
 
 type GameProps = {
@@ -20,10 +19,7 @@ function Game({ soundMuted }: GameProps) {
 
   const flipCards = () => {
     if (!cardsFlipped && !soundMuted) {
-      const flipAudio = new Audio(flipSound);
-      flipAudio.currentTime = 1;
       flipAudio.play();
-      setTimeout(() => flipAudio.pause(), 3250);
     }
     setCardsFlipped(true);
   };
