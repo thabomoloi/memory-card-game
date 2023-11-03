@@ -1,10 +1,10 @@
-import "./Menu.css";
+import "./GameStart.css";
 
-interface MenuProps {
+interface GameStartProps {
   handleStartGame: () => void;
 }
 
-function Menu({ handleStartGame }: MenuProps): React.JSX.Element {
+function GameStart({ handleStartGame }: GameStartProps): React.JSX.Element {
   return (
     <div className="menu-container">
       <div className="menu-modal">
@@ -43,4 +43,4 @@ function Menu({ handleStartGame }: MenuProps): React.JSX.Element {
   );
 }
 
-export default Menu;
+export default GameStart;
