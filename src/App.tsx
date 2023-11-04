@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { backgroundAudio, menuAudio } from "./utils/audio";
 import Game from "./components/Game/Game";
 import GameStart from "./components/GameStart/GameStart";
-import "./App.css";
 import GameMenu from "./components/GameMenu/GameMenu";
+import Header from "./components/Header/Header";
+
+import "./App.css";
 
 enum GameState {
   Menu,
@@ -16,6 +18,8 @@ enum GameState {
 function App() {
   const [soundMuted, setSoundMuted] = useState<boolean>(false);
   const [gameState, setGameState] = useState<GameState>(GameState.Menu);
+  const [score, setScore] = useState<number>(0);
+  const [bestScore, setBestScore] = useState<number>(0);
 
   useEffect(() => {
     if (!soundMuted) {
@@ -43,6 +47,7 @@ function App() {
   const handlePlayGame = (): void => {
     setGameState(GameState.Start);
     if (!soundMuted) {
+      menuAudio.currentTime = 3;
       menuAudio.play();
     }
   };
@@ -51,10 +56,17 @@ function App() {
       {gameState === GameState.Menu && (
         <GameMenu handlePlayGame={handlePlayGame} />
       )}
-      {gameState == GameState.Start && (
-        <GameStart handleStartGame={handleStartGame} />
+      {gameState !== GameState.Menu && (
+        <>
+          {/* <Header score={score} bestScore={bestScore} /> */}
+          <main>
+            {gameState == GameState.Start && (
+              <GameStart handleStartGame={handleStartGame} />
+            )}
+            {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
+          </main>
+        </>
       )}
-      {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
     </>
   );
 }

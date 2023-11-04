@@ -46,4 +46,5 @@ body {
 #root {
   min-height: 100svh;
   background-color: rgba(0, 0, 0, 0.25);
+  position: relative;
 }
