@@ -44,6 +44,12 @@ function App() {
     setGameState(GameState.Playing);
   };
 
+  useEffect(() => {
+    setSoundMuted(false);
+    setBestScore(0);
+    setScore(0);
+  }, []);
+
   const handlePlayGame = (): void => {
     setGameState(GameState.Start);
     if (!soundMuted) {
@@ -66,6 +72,9 @@ function App() {
             {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
           </main>
         </>
+      )}
+      {gameState === GameState.GameOver && (
+        <Header score={score} bestScore={bestScore} />
       )}
     </>
   );
