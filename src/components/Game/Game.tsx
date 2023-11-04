@@ -19,6 +19,7 @@ function Game({ soundMuted }: GameProps) {
 
   const flipCards = () => {
     if (!cardsFlipped && !soundMuted) {
+      flipAudio.currentTime = 0.5;
       flipAudio.play();
     }
     setCardsFlipped(true);
