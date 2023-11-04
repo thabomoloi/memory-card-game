@@ -1,44 +1,58 @@
 import { useEffect, useState } from "react";
-import loadingImage from "./assets/images/luffy-gear-5.gif";
-import backgroundSound from "./assets/sounds/overtaken_one_piece.mp3";
-
-import "./App.css";
+import { backgroundAudio, menuAudio } from "./utils/audio";
 import Game from "./components/Game/Game";
-import Menu from "./components/Menu/Menu";
+import GameStart from "./components/GameStart/GameStart";
+import "./App.css";
+import GameMenu from "./components/GameMenu/GameMenu";
 
 enum GameState {
-  Loading,
   Menu,
+  Start,
   Playing,
   GameOver,
+  Victory,
 }
 
 function App() {
-  const backgroundAudio = new Audio(backgroundSound);
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [soundMuted, setSoundMuted] = useState<boolean>(false);
-  const [gameState, setGameState] = useState<GameState>(GameState.Loading);
+  const [gameState, setGameState] = useState<GameState>(GameState.Menu);
 
   useEffect(() => {
-    setTimeout(() => setGameState(GameState.Menu), 5000);
-  }, [isLoading, soundMuted]);
-
-  const handleStartGame = () => {
+    if (!soundMuted) {
+      switch (gameState) {
+        case GameState.Start:
+          menuAudio.play();
+          backgroundAudio.pause();
+          break;
+        case GameState.Playing:
+          backgroundAudio.play();
+          menuAudio.pause();
+          break;
+        default:
+          break;
+      }
+    } else {
+      backgroundAudio.pause();
+      menuAudio.pause();
+    }
+  }, [soundMuted, gameState]);
+  const handleStartGame = (): void => {
     setGameState(GameState.Playing);
-    backgroundAudio.currentTime = 0;
-    backgroundAudio.loop = true;
-    backgroundAudio.play();
+  };
+
+  const handlePlayGame = (): void => {
+    setGameState(GameState.Start);
+    if (!soundMuted) {
+      menuAudio.play();
+    }
   };
   return (
     <>
-      {gameState == GameState.Loading && (
-        <div id="loading-game">
-          <img src={loadingImage} alt="Loading..." />
-        </div>
+      {gameState === GameState.Menu && (
+        <GameMenu handlePlayGame={handlePlayGame} />
       )}
-      {gameState == GameState.Menu && (
-        <Menu handleStartGame={handleStartGame} />
+      {gameState == GameState.Start && (
+        <GameStart handleStartGame={handleStartGame} />
       )}
       {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
     </>
