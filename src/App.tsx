@@ -59,27 +59,10 @@ function App() {
     }
   };
   return (
-    // <>
-    //   {gameState === GameState.Menu && (
-    //     <GameMenu handlePlayGame={handlePlayGame} />
-    //   )}
-    //   {gameState !== GameState.Menu && (
-    //     <>
-    //       {/* <Header score={score} bestScore={bestScore} /> */}
-    //       <main>
-    //         {gameState == GameState.Start && (
-    //           <GameStart handleStartGame={handleStartGame} />
-    //         )}
-    //         {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
-    //       </main>
-    //     </>
-    //   )}
-    //   {gameState === GameState.GameOver && (
-    //     <Header score={score} bestScore={bestScore} />
-    //   )}
-    // </>
-    <>
-      <Header score={score} bestScore={bestScore} />
+    <div className="app">
+      {gameState == GameState.Playing && (
+        <Header score={score} bestScore={bestScore} />
+      )}
       <Main
         soundMuted={soundMuted}
         muteSound={() => setSoundMuted(true)}
@@ -90,7 +73,6 @@ function App() {
         )}
         {gameState !== GameState.Menu && (
           <>
-            {/* <Header score={score} bestScore={bestScore} /> */}
             <main>
               {gameState == GameState.Start && (
                 <GameStart handleStartGame={handleStartGame} />
@@ -103,7 +85,7 @@ function App() {
         )}
       </Main>
       <Footer />
-    </>
+    </div>
   );
 }
 

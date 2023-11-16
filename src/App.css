@@ -1,9 +1,10 @@
-#loading-game {
-  height: 100svh;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
-#loading-game img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+main {
+  flex-grow: 1;
 }
