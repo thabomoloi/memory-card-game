@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { characters } from "../../characters";
+import { characters } from "../../utils/characters";
 import Card from "../Card/Card";
 import { flipAudio } from "../../utils/audio";
 import "./Game.css";
