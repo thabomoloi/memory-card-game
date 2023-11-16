@@ -6,6 +6,7 @@ import GameMenu from "./components/GameMenu/GameMenu";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
+import Main from "./components/Main/Main";
 
 enum GameState {
   Menu,
@@ -79,6 +80,28 @@ function App() {
     // </>
     <>
       <Header score={score} bestScore={bestScore} />
+      <Main
+        soundMuted={soundMuted}
+        muteSound={() => setSoundMuted(true)}
+        unmuteSound={() => setSoundMuted(false)}
+      >
+        {gameState === GameState.Menu && (
+          <GameMenu handlePlayGame={handlePlayGame} />
+        )}
+        {gameState !== GameState.Menu && (
+          <>
+            {/* <Header score={score} bestScore={bestScore} /> */}
+            <main>
+              {gameState == GameState.Start && (
+                <GameStart handleStartGame={handleStartGame} />
+              )}
+              {gameState == GameState.Playing && (
+                <Game soundMuted={soundMuted} />
+              )}
+            </main>
+          </>
+        )}
+      </Main>
       <Footer />
     </>
   );
