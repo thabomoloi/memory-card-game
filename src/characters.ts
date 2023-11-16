@@ -29,6 +29,17 @@ type CharacterImage = {
 const characters: Character[] = [];
 
 /**
+ * Gets the name of the character from a  file name.
+ * @param fileName The name of the image
+ * @returns The name of the character
+ */
+function getCharacterName(fileName: string): string {
+  const match = fileName.match(/^([A-Za-z\.\s]+)-[a-f0-9]+$/);
+  if (match) return match[1];
+  return fileName;
+}
+
+/**
  * Retrieves the filename from the given path to the file.
  * @param filePath The path to the file.
  * @returns The file name without extension.
@@ -48,10 +59,12 @@ function getFileName(filePath: string): string {
  * @param image The image of the character.
  */
 function addCharacterToArray(image: CharacterImage) {
-  const name: string = getFileName(image.default).toLowerCase();
+  const fileName: string = getFileName(image.default).toLowerCase();
+  const characterName: string = getCharacterName(fileName);
+
   characters.push({
     id: uuidv4(),
-    name: name,
+    name: characterName,
     imageSrc: image.default,
     selected: false,
   });
