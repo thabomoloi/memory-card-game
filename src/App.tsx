@@ -71,18 +71,10 @@ function App() {
         {gameState === GameState.Menu && (
           <GameMenu handlePlayGame={handlePlayGame} />
         )}
-        {gameState !== GameState.Menu && (
-          <>
-            <main>
-              {gameState == GameState.Start && (
-                <GameStart handleStartGame={handleStartGame} />
-              )}
-              {gameState == GameState.Playing && (
-                <Game soundMuted={soundMuted} />
-              )}
-            </main>
-          </>
+        {gameState == GameState.Start && (
+          <GameStart handleStartGame={handleStartGame} />
         )}
+        {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
       </Main>
       <Footer />
     </div>

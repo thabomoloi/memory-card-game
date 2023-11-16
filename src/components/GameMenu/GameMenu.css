@@ -1,5 +1,5 @@
 .menu-container {
-  height: 100svh;
+  flex-grow: 1;
 }
 .menu-container,
 .menu,
