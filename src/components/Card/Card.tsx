@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Character } from "../../characters";
+import { Character } from "../../utils/characters";
 import logo from "../../assets/images/onepiece.png";
 import "./Card.css";
 

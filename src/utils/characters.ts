@@ -76,7 +76,7 @@ function addCharacterToArray(image: CharacterImage) {
  */
 function createCharacters() {
   const images = import.meta.glob<CharacterImage>(
-    "./assets/images/characters/*"
+    "../assets/images/characters/*"
   );
   for (const path in images) {
     images[path]().then(addCharacterToArray);
