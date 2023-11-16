@@ -1,4 +1,4 @@
-import logo from "../../assets/images/onepiecelogo.png";
+import logo from "../../assets/images/onepiece.png";
 import "./Header.css";
 
 interface HeaderProps {
@@ -14,10 +14,14 @@ function Header({ score, bestScore }: HeaderProps): React.JSX.Element {
         <h1>Memories</h1>
       </div>
       <div className="scores">
-        <span>Score:</span>
-        <span>{score}</span>
-        <span>Best Score:</span>
-        <span>{bestScore}</span>
+        <div>
+          <span>Score:</span>
+          <span>{score}</span>
+        </div>
+        <div>
+          <span>Best Score:</span>
+          <span>{bestScore}</span>
+        </div>
       </div>
     </header>
   );

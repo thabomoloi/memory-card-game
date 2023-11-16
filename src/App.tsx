@@ -58,24 +58,27 @@ function App() {
     }
   };
   return (
+    // <>
+    //   {gameState === GameState.Menu && (
+    //     <GameMenu handlePlayGame={handlePlayGame} />
+    //   )}
+    //   {gameState !== GameState.Menu && (
+    //     <>
+    //       {/* <Header score={score} bestScore={bestScore} /> */}
+    //       <main>
+    //         {gameState == GameState.Start && (
+    //           <GameStart handleStartGame={handleStartGame} />
+    //         )}
+    //         {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
+    //       </main>
+    //     </>
+    //   )}
+    //   {gameState === GameState.GameOver && (
+    //     <Header score={score} bestScore={bestScore} />
+    //   )}
+    // </>
     <>
-      {gameState === GameState.Menu && (
-        <GameMenu handlePlayGame={handlePlayGame} />
-      )}
-      {gameState !== GameState.Menu && (
-        <>
-          {/* <Header score={score} bestScore={bestScore} /> */}
-          <main>
-            {gameState == GameState.Start && (
-              <GameStart handleStartGame={handleStartGame} />
-            )}
-            {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
-          </main>
-        </>
-      )}
-      {gameState === GameState.GameOver && (
-        <Header score={score} bestScore={bestScore} />
-      )}
+      <Header score={score} bestScore={bestScore} />
     </>
   );
 }
