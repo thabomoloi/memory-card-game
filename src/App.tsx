@@ -4,7 +4,7 @@ import Game from "./components/Game/Game";
 import GameStart from "./components/GameStart/GameStart";
 import GameMenu from "./components/GameMenu/GameMenu";
 import Header from "./components/Header/Header";
-
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 enum GameState {
@@ -79,6 +79,7 @@ function App() {
     // </>
     <>
       <Header score={score} bestScore={bestScore} />
+      <Footer />
     </>
   );
 }
