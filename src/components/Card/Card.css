@@ -1,6 +1,5 @@
 .card {
   background-color: transparent;
-  width: 12rem;
   height: 14rem;
   border-radius: 10px;
   perspective: 1000px;
@@ -30,11 +29,14 @@
 .card-front {
   background-color: #075985;
   color: white;
-  padding: 1em;
+  padding: 0.25em;
 }
 .card-front img {
+  height: 10rem;
   width: 100%;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: top;
 }
 .card-back {
   background-color: black;
@@ -54,6 +56,6 @@
   align-items: center;
 }
 .card .details span {
-  font-size: 1.75rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
