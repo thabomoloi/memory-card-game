@@ -1,8 +1,8 @@
 .board {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: 1rem;
-  align-items: center;
-  padding: 1em;
-  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
 }
