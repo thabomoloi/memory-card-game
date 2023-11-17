@@ -4,11 +4,7 @@ import Card from "../Card/Card";
 import { flipAudio } from "../../utils/audio";
 import "./Game.css";
 
-type GameProps = {
-  soundMuted: boolean;
-};
-
-function Game({ soundMuted }: GameProps) {
+function Game() {
   const [cardsFlipped, setCardsFlipped] = useState<boolean>(false);
 
   useEffect(() => {
@@ -18,8 +14,8 @@ function Game({ soundMuted }: GameProps) {
   }, [cardsFlipped]);
 
   const flipCards = () => {
-    if (!cardsFlipped && !soundMuted) {
-      flipAudio.currentTime = 0.5;
+    if (!cardsFlipped) {
+      flipAudio.currentTime = 0.9;
       flipAudio.play();
     }
     setCardsFlipped(true);
