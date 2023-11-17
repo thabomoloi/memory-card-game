@@ -25,8 +25,8 @@ function Main({
       >
         <img
           src={soundMuted ? musicOnIcon : musicOffIcon}
-          alt={soundMuted ? "Music On Note" : "Music Off Note"}
-          title={soundMuted ? "Unmute" : "Mute"}
+          alt={soundMuted ? "Music On" : "Music Off"}
+          title={soundMuted ? "Unmute music" : "Mute music"}
         />
       </button>
     </main>

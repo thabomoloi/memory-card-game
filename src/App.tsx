@@ -74,7 +74,7 @@ function App() {
         {gameState == GameState.Start && (
           <GameStart handleStartGame={handleStartGame} />
         )}
-        {gameState == GameState.Playing && <Game soundMuted={soundMuted} />}
+        {gameState == GameState.Playing && <Game />}
       </Main>
       <Footer />
     </div>
