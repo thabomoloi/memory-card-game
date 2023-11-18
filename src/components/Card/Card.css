@@ -1,6 +1,10 @@
+
+
 .card {
   background-color: transparent;
-  height: 14rem;
+  height: var(--card-height);
+  flex-basis: clamp(5.25rem, 20%, 10rem);
+  width: 100%;
   border-radius: 10px;
   perspective: 1000px;
 }
@@ -32,7 +36,7 @@
   padding: 0.25em;
 }
 .card-front img {
-  height: 10rem;
+  height: calc(var(--card-height) - 2rem);
   width: 100%;
   border-radius: 10px;
   object-fit: cover;
@@ -47,7 +51,7 @@
   justify-content: center;
 }
 .card-back img {
-  width: 10rem;
+  width: 100%;
 }
 
 .card .details {
@@ -58,4 +62,25 @@
 .card .details span {
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+ 
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }
