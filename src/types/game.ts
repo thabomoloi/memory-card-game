@@ -1,9 +1,9 @@
 /** Represents the state of the game. */
 enum GameState {
-  /** Game is at menu page. */
+  /** Home page */
+  Home,
+  /** Menu page. */
   Menu,
-  /** Game is at start page. */
-  Start,
   /** Game is playing. */
   Playing,
   /** The player has lost the game. */
