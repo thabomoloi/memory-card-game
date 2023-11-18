@@ -22,15 +22,17 @@ function Game() {
   };
 
   return (
-    <div className="board">
-      {characters.map((character) => (
-        <Card
-          key={character.id}
-          character={character}
-          isFlipped={cardsFlipped}
-          flipCards={flipCards}
-        />
-      ))}
+    <div className="board-container">
+      <div className="board">
+        {characters.map((character) => (
+          <Card
+            key={character.id}
+            character={character}
+            isFlipped={cardsFlipped}
+            flipCards={flipCards}
+          />
+        ))}
+      </div>
     </div>
   );
 }
