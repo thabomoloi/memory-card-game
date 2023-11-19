@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Score, Character } from "../../types/game";
+import { Score, Character, GameState } from "../../types/game";
 import { flipAudio } from "../../utils/audio";
 import logo from "../../assets/images/onepiece.png";
 import { useCharacters } from "../../hooks";
@@ -43,9 +43,17 @@ function Card({ character, cardsFlipped, handleCharacterSelect }: CardProps) {
 
 interface GameProps {
 	gameScore: Score;
+	game: {
+		gameState: GameState;
+		goToGamePage: () => void;
+		goToHomePage: () => void;
+		goToMenuPage: () => void;
+		endGame: (win: boolean) => void;
+		restartGame: () => void;
+	};
 }
 
-function Game({ gameScore }: GameProps) {
+function Game({ gameScore, game }: GameProps) {
 	const [cardsFlipped, setCardsFlipped] = useState<boolean>(false);
 	const { characters, selectCharacter } = useCharacters();
 
@@ -58,14 +66,15 @@ function Game({ gameScore }: GameProps) {
 	// select card and update score
 	const handleCharacterSelect = (character: Character): void => {
 		const validSelection = selectCharacter(character);
-		console.log(character.name, validSelection);
-		console.log(characters.filter((i) => i.selected));
 		if (validSelection) {
 			if (!cardsFlipped) {
 				flipAudio.play();
 				gameScore.incrementScore();
 				setCardsFlipped(true);
 			}
+		} else {
+			// lose game
+			game.endGame(false);
 		}
 	};
 
