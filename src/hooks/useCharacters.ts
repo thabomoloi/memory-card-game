@@ -5,7 +5,9 @@ import shuffleCharacters from "../utils/shuffle";
 
 function useCharacters() {
 	const [characters, setCharacters] = useState<Character[]>(chars);
-	const [shuffledCharacters, setShuffledCharacters] = useState<Character[]>([]);
+	const [shuffledCharacters, setShuffledCharacters] = useState<Character[]>(
+		[]
+	);
 
 	useEffect(() => {
 		setShuffledCharacters(shuffleCharacters(characters));
@@ -15,8 +17,14 @@ function useCharacters() {
 	const selectCharacter = (char: Character): boolean => {
 		if (!char.selected) {
 			const selected = true;
-			setCharacters((prev) => [...prev, { ...char, selected }]);
-			return true;
+			const index = characters.findIndex((item) => item.id === char.id);
+			const updatedCharacters = [...characters];
+
+			if (index !== -1) {
+				updatedCharacters[index] = { ...char, selected };
+				setCharacters(updatedCharacters);
+				return true;
+			}
 		}
 		return false;
 	};
