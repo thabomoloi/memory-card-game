@@ -13,7 +13,7 @@ function reducer(state: ScoreState, action: ScoreAction): ScoreState {
 		case "INCREMENT":
 			const score = state.score + 1;
 			const best = Math.max(score, bestScore.getValue());
-			if (best > score) bestScore.setValue(best);
+			if (best >= score) bestScore.setValue(best);
 			return { score, bestScore: best };
 		case "RESET":
 			return { score: 0, bestScore: bestScore.getValue() };

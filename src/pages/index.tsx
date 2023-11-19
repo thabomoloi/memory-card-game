@@ -9,21 +9,19 @@ import Menu from "./Menu/Menu";
 import "./index.css";
 function App(): React.JSX.Element {
 	const { score, sound, game } = useGame();
+
+	const showGamePage =
+		game.gameState !== GameState.Home && game.gameState !== GameState.Menu;
+	const showHomePage = game.gameState === GameState.Home;
+	const showMenuPage = game.gameState === GameState.Menu;
+
 	return (
 		<div className="app">
-			{game.gameState === GameState.Playing && (
-				<Header score={score.score} bestScore={score.bestScore} />
-			)}
+			{showGamePage && <Header score={score} />}
 			<Main sound={sound}>
-				{game.gameState === GameState.Home && (
-					<Home handlePlayGame={game.goToMenuPage} />
-				)}
-				{game.gameState === GameState.Menu && (
-					<Menu handleStartGame={game.goToGamePage} />
-				)}
-				{game.gameState === GameState.Playing && (
-					<Game gameScore={score} />
-				)}
+				{showHomePage && <Home handlePlayGame={game.goToMenuPage} />}
+				{showMenuPage && <Menu handleStartGame={game.goToGamePage} />}
+				{showGamePage && <Game gameScore={score} game={game} />}
 			</Main>
 			<Footer />
 		</div>
