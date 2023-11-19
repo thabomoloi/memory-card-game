@@ -1,23 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-
-type Character = {
-  /**
-   * Unique identifier for the character.
-   */
-  id: string;
-  /**
-   * The name of the character.
-   */
-  name: string;
-  /**
-   * The absolute path of the image of the character.
-   */
-  imageSrc: string;
-  /**
-   * The boolean to indicate if the user has been selected.
-   */
-  selected: boolean;
-};
+import { Character } from "../types/game";
 
 type CharacterImage = {
   /**
