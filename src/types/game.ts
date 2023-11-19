@@ -24,14 +24,41 @@ interface Score {
   increaseBestScore: () => void;
 }
 
-/** Represents the background sound. */
-interface BackgroundSound {
-  /** Represents whether background sound is on/off */
+/** Represents the sound. */
+interface Sound {
+  /** Represents the audio element. */
+  audio: HTMLAudioElement;
+  /** Represents whether the sound is on/off */
   muted: boolean;
+  /** Checks if sound is muted */
+  isMuted(): boolean;
   /** Turns background sound off */
-  mute: () => void;
+  mute(): void;
   /** Turns background sound on */
-  unmute: () => void;
+  unmute(): void;
+  /** Plays sound if not muted. */
+  play(): void;
+  /** Pause the sound. */
+  pause(): void;
 }
 
-export type { GameState, Score, BackgroundSound };
+type Character = {
+  /**
+   * Unique identifier for the character.
+   */
+  id: string;
+  /**
+   * The name of the character.
+   */
+  name: string;
+  /**
+   * The absolute path of the image of the character.
+   */
+  imageSrc: string;
+  /**
+   * The boolean to indicate if the user has been selected.
+   */
+  selected: boolean;
+};
+
+export type { GameState, Score, Sound, Character };
