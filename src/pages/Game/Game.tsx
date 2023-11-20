@@ -55,14 +55,20 @@ interface GameProps {
 
 function Game({ gameScore, game }: GameProps) {
 	const [cardsFlipped, setCardsFlipped] = useState<boolean>(false);
-	const { characters, selectCharacter } = useCharacters();
+	const { characters, allSelected, selectCharacter, resetCharacters } =
+		useCharacters();
 
 	useEffect(() => {
+		let timeoutId: number;
 		if (cardsFlipped) {
-			setTimeout(() => setCardsFlipped(false), 1500);
+			timeoutId = setTimeout(() => setCardsFlipped(false), 1500);
 		}
+		return () => clearTimeout(timeoutId);
 	}, [cardsFlipped]);
 
+	useEffect(() => {
+		if (allSelected) game.endGame(true);
+	}, [allSelected, characters]);
 	// select card and update score
 	const handleCharacterSelect = (character: Character): void => {
 		const validSelection = selectCharacter(character);
@@ -90,6 +96,46 @@ function Game({ gameScore, game }: GameProps) {
 					/>
 				))}
 			</div>
+			{(game.gameState === GameState.Victory ||
+				game.gameState === GameState.GameOver) && (
+				<div className="result-modal">
+					<div className="content">
+						{game.gameState === GameState.GameOver && (
+							<h1>You Lose</h1>
+						)}
+						{game.gameState === GameState.Victory && (
+							<>
+								<h1>You Win</h1>
+								<p>
+									Congratulations! You have regained your
+									memories.
+								</p>
+							</>
+						)}
+						<div className="scores">
+							<div>
+								<span>Score:</span>
+								<span>{gameScore.score}</span>
+							</div>
+							<div>
+								<span>Best Score:</span>
+								<span>{gameScore.bestScore}</span>
+							</div>
+						</div>
+						<div>
+							<button
+								className="btn"
+								onClick={() => {
+									game.restartGame();
+									resetCharacters();
+								}}
+							>
+								Play Again
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

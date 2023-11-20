@@ -82,6 +82,37 @@
 
 .board-container {
 }
+
+.result-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	height: 100svh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.75);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.result-modal .content {
+	width: clamp(400px, 50%, 20em);
+	flex-grow: 0;
+	background-color: #075985;
+	padding: 1rem;
+	border-radius: 10px;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 5px 5px 10px rgba(175, 114, 0, 0.625);
+}
+.result-modal h1,
+.result-modal p {
+	margin: 0;
+	text-align: center;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 }
