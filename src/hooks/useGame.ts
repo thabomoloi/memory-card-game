@@ -41,7 +41,10 @@ function useGame() {
 	const goToGamePage = () => setGameState(GameState.Playing);
 	const endGame = (win: boolean) =>
 		setGameState(win ? GameState.Victory : GameState.GameOver);
-	const restartGame = () => score.resetScore();
+	const restartGame = () => {
+		score.resetScore();
+		goToGamePage();
+	};
 
 	return {
 		score,
