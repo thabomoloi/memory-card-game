@@ -63,12 +63,10 @@ function Game({ gameScore, game }: GameProps) {
 		if (cardsFlipped) {
 			timeoutId = setTimeout(() => setCardsFlipped(false), 1500);
 		}
+		if (allSelected && !cardsFlipped) game.endGame(true);
 		return () => clearTimeout(timeoutId);
-	}, [cardsFlipped]);
+	}, [cardsFlipped, allSelected, characters]);
 
-	useEffect(() => {
-		if (allSelected) game.endGame(true);
-	}, [allSelected, characters]);
 	// select card and update score
 	const handleCharacterSelect = (character: Character): void => {
 		const validSelection = selectCharacter(character);
@@ -87,7 +85,7 @@ function Game({ gameScore, game }: GameProps) {
 	return (
 		<div className="board-container">
 			<div className="board">
-				{characters.map((character) => (
+				{characters.slice(0, 12).map((character) => (
 					<Card
 						key={character.id}
 						character={character}
@@ -122,7 +120,12 @@ function Game({ gameScore, game }: GameProps) {
 								<span>{gameScore.bestScore}</span>
 							</div>
 						</div>
-						<div>
+						<div
+							style={{
+								display: "flex",
+								gap: "1rem",
+							}}
+						>
 							<button
 								className="btn"
 								onClick={() => {
@@ -131,6 +134,19 @@ function Game({ gameScore, game }: GameProps) {
 								}}
 							>
 								Play Again
+							</button>
+							<button
+								className="btn"
+								onClick={() => {
+									gameScore.resetScore();
+									game.goToHomePage();
+								}}
+								style={{
+									backgroundColor: "gainsboro",
+									color: "rgb(175, 114, 0)",
+								}}
+							>
+								Quit
 							</button>
 						</div>
 					</div>
