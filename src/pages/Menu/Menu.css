@@ -1,10 +1,10 @@
 .menu-container {
 	position: relative;
-	/* min-height: 100svh; */
+	/* min-height: 100dvh; */
 }
 .menu-modal {
 	position: absolute;
-	/* min-height: 100svh; */
+	/* min-height: 100dvh; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
