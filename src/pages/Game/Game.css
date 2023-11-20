@@ -1,5 +1,6 @@
 :root {
 	--card-height: 10rem;
+	--card-font: 1.375rem;
 }
 
 .card {
@@ -43,7 +44,7 @@
 	padding: 0.25em;
 }
 .card-front img {
-	height: calc(var(--card-height) - 2rem);
+	height: calc(var(--card-height) - var(--card-font) - 0.5rem);
 	width: 100%;
 	border-radius: 10px;
 	object-fit: cover;
@@ -67,20 +68,20 @@
 	align-items: center;
 }
 .card .details span {
-	font-size: 1.5rem;
+	font-size: var(--card-font);
 	font-weight: 600;
 }
 
 .board {
-	display: flex;
-	flex-flow: row wrap;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: repeat(4, 1fr);
 	gap: 0.25rem;
-	justify-items: center;
-	align-items: center;
-	justify-content: center;
 }
 
 .board-container {
+	width: clamp(20rem, 100%, 36rem);
+	margin: 0 auto;
 }
 
 .result-modal {
@@ -113,22 +114,21 @@
 	margin: 0;
 	text-align: center;
 }
-/* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px) {
+	:root {
+		--card-font: 1rem;
+	}
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+	:root {
+		--card-font: 1.125rem;
+	}
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+	:root {
+		--card-font: 1.25rem;
+	}
 }
