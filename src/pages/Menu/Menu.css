@@ -30,7 +30,7 @@
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-.menu-content .btn {
+.btn {
 	background-color: rgb(175, 114, 0);
 	border: none;
 	font: inherit;
@@ -40,6 +40,6 @@
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.325);
 }
 
-.menu-content .btn:hover {
+.btn:hover {
 	cursor: pointer;
 }
