@@ -31,7 +31,8 @@ function shuffle(array: Character[]): Character[] {
  * @param array The array of characters.
  * @returns An shuffled array of characters
  */
-function shuffleCharacters(array: Character[]): Character[] {
+function shuffleCharacters(arr: Character[]): Character[] {
+	const array: Character[] = shuffle(arr);
 	const selected: Character[] = array.filter((char) => char.selected);
 	const notSelected: Character[] = array.filter((char) => !char.selected);
 
