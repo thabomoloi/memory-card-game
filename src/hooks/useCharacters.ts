@@ -8,9 +8,12 @@ function useCharacters() {
 	const [shuffledCharacters, setShuffledCharacters] = useState<Character[]>(
 		[]
 	);
+	const [allSelected, setAllSelected] = useState<boolean>();
 
 	useEffect(() => {
 		setShuffledCharacters(shuffleCharacters(characters));
+		const selectedCharacters = characters.filter((char) => char.selected);
+		setAllSelected(selectedCharacters.length === characters.length);
 	}, [characters]);
 
 	// selects a character and update array
@@ -29,7 +32,21 @@ function useCharacters() {
 		return false;
 	};
 
-	return { characters: shuffledCharacters, selectCharacter };
+	const resetCharacters = (): void => {
+		const updatedCharacters: Character[] = characters.map<Character>(
+			(char) => ({
+				...char,
+				selected: false,
+			})
+		);
+		setCharacters(updatedCharacters);
+	};
+	return {
+		characters: shuffledCharacters,
+		allSelected,
+		selectCharacter,
+		resetCharacters,
+	};
 }
 
 export default useCharacters;
