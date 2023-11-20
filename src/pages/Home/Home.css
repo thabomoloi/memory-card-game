@@ -1,3 +1,7 @@
+:root {
+	--font-heading: 5rem;
+	--logo-width: 30rem;
+}
 .menu-container {
 	flex-grow: 1;
 }
@@ -15,26 +19,36 @@
 	flex-direction: column;
 }
 
-.menu {
+.menu,
+.menu-container {
+	position: relative;
+}
+.menu-container::before {
+	content: " ";
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 	background-color: #15803c7e;
-	padding: 2em;
-	border-radius: 20px;
 	background: url("../../assets/images/space.jpg");
+	opacity: 0.75;
 	background-size: cover;
 }
 .menu-header h1 {
 	font-family: "OnePiece", Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-size: 6rem;
-	line-height: 6rem;
+	font-size: var(--font-heading);
+	line-height: var(--font-heading);
 	font-weight: 900;
 	text-transform: uppercase;
 	text-align: center;
 }
 
 .menu .menu-header img#logo {
-	width: 30rem;
+	width: var(--logo-width);
 }
 
 .menu p,
@@ -51,4 +65,26 @@
 }
 .menu button:hover {
 	cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+	:root {
+		--font-heading: 3rem;
+		--logo-width: 18rem;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	:root {
+		--card-font: 1.125rem;
+		--font-heading: 4rem;
+		--logo-width: 24rem;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	:root {
+		--font-heading: 5rem;
+		--logo-width: 30rem;
+	}
 }
